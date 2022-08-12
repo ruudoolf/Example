@@ -9,15 +9,9 @@ public class FoodCanon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating(nameof(SpawnFoodDoWhile), 0.5f, 0.5f);
+        InvokeRepeating(nameof(SpawnFoodDoWhile), 0, 0.2f);
     }
 
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     private void FireFood()
     {
         int randomFood = Random.Range(0, food.Length);
@@ -58,10 +52,10 @@ public class FoodCanon : MonoBehaviour
     }
     private void SpawnFoodDoWhile()
     {
-        int i = 10;
+        int i = 0;
         do
         {
-            GameObject newfood = Instantiate(food[0], transform.position, transform.rotation);
+            GameObject newfood = Instantiate(food[i], transform.position, transform.rotation);
             Rigidbody direction = newfood.GetComponent<Rigidbody>();
             direction.AddForce(Random.insideUnitSphere * 1000);
             i++;

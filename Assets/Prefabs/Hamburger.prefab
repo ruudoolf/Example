@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1294358568567023263}
   - component: {fileID: 7834200970898926775}
   - component: {fileID: 4813436759412601542}
+  - component: {fileID: 4355452154516024279}
   m_Layer: 0
   m_Name: Hamburger
   m_TagString: Untagged
@@ -119,3 +120,15 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.26129133
   m_Center: {x: 0, y: 0.14395829, z: -0.000000014901161}
+--- !u!114 &4355452154516024279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 789959739399472970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a8b7229179b3cd4bb43ac54fc3f0c0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -21,4 +21,13 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Interactable interactableObject = collision.gameObject.GetComponent<Interactable>();
+        if (interactableObject != null)
+        {
+            interactableObject.Interact();
+        }
+    }
 }

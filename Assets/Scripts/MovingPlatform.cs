@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MovingPlatform : MonoBehaviour
@@ -11,12 +9,12 @@ public class MovingPlatform : MonoBehaviour
 
     public void CollisionEvent(Collision collision)
     {
-        collision.transform.parent = transform;
+        
     }
 
     public void CollisionExitEvent(Collision collision)
     {
-        collision.transform.parent = null;
+        
     }
 
     // Start is called before the first frame update

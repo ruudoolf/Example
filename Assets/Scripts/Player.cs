@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private Rigidbody rb;
     [SerializeField] private float speed;
     [SerializeField] private Transform groundCheck;
+    [SerializeField] private float getUpDuration = 1;
+    [SerializeField] private float knockedOutDuration = 1;
     private bool isGrounded;
     private bool isKnockedOut;
     private float getUpTimer;
-    [SerializeField] private float getUpDuration=1;
+    private Rigidbody rb;
+    private Quaternion knockedOutRotation;
+
     public void Move(float xInput, float zInput)
     {
         if (!isKnockedOut)
@@ -20,10 +23,11 @@ public class Player : MonoBehaviour
 
 
     }
-    private void getUp()
+    private void GetUp()
     {
         isKnockedOut = false;
-        rb.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationX ;
+        knockedOutRotation = transform.rotation;
+        //rb.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationX ;
         
     }
     public void Jump()
@@ -45,7 +49,7 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         Knockout();
-        Invoke(nameof(getUp), 2);
+        Invoke(nameof(GetUp), knockedOutDuration);
         
     }
     private void Update()
@@ -54,7 +58,7 @@ public class Player : MonoBehaviour
         {
             getUpTimer += Time.deltaTime;
             print(getUpTimer / getUpDuration);
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.identity, getUpTimer/getUpDuration);
+            transform.rotation = Quaternion.Slerp(knockedOutRotation, Quaternion.identity, getUpTimer / getUpDuration);
         }
     }
     private void OnCollisionEnter(Collision collision)

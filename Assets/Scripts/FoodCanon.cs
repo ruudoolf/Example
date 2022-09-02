@@ -17,7 +17,7 @@ public class FoodCanon : MonoBehaviour
         int randomFood = Random.Range(0, food.Length);
         GameObject newfood = Instantiate(food[randomFood], transform.position, transform.rotation);
         Rigidbody direction = newfood.GetComponent<Rigidbody>();
-        direction.AddForce(Random.insideUnitSphere * 1000);
+       //direction.AddForce(Random.insideUnitSphere * 1000);
     }
 
     private void SpawnFoodForEach()
@@ -57,7 +57,7 @@ public class FoodCanon : MonoBehaviour
         {
             GameObject newfood = Instantiate(food[i], transform.position, transform.rotation);
             Rigidbody direction = newfood.GetComponent<Rigidbody>();
-            direction.AddForce(Random.insideUnitSphere * 1000);
+            //direction.AddForce(Random.insideUnitSphere * 1000);
             i++;
         }
         while (i < food.Length);

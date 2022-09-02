@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float getUpDuration = 1;
     [SerializeField] private float knockedOutDuration = 1;
+    [SerializeField] private int jumpForce = 100;
     private bool isGrounded;
     private bool isKnockedOut;
     private float getUpTimer;
@@ -27,14 +28,14 @@ public class Player : MonoBehaviour
     {
         isKnockedOut = false;
         knockedOutRotation = transform.rotation;
-        //rb.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationX ;
+        rb.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationX ;
         
     }
     public void Jump()
     {
         if (isGrounded && !isKnockedOut)
         {
-            rb.AddForce(Vector3.up * 500);
+            rb.AddForce(Vector3.up * jumpForce);
         }
     }
 

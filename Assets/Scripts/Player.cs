@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float getUpDuration = 1;
-    [SerializeField] private float knockedOutDuration = 1;
+    [SerializeField] private float knockedOutDuration = 0.7f;
     [SerializeField] private int jumpForce = 100;
     private bool isGrounded;
     private bool isKnockedOut;
@@ -44,21 +44,20 @@ public class Player : MonoBehaviour
         rb.constraints = RigidbodyConstraints.None;
         isKnockedOut = true;
         rb.AddForce(Vector3.left * 5);
+        CancelInvoke(nameof(GetUp));
+        Invoke(nameof(GetUp), knockedOutDuration);
     }
     
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        Knockout();
-        Invoke(nameof(GetUp), knockedOutDuration);
-        
     }
     private void Update()
     {
         if (!isKnockedOut)
         {
             getUpTimer += Time.deltaTime;
-            print(getUpTimer / getUpDuration);
+       
             transform.rotation = Quaternion.Slerp(knockedOutRotation, Quaternion.identity, getUpTimer / getUpDuration);
         }
     }
@@ -78,7 +77,7 @@ public class Player : MonoBehaviour
         if (Physics.Raycast(groundCheck.position, Vector3.down, out hit, 0.5f))
         {
             isGrounded = true;
-            print("Found an object - distance: " + hit.distance + " " + hit.transform.name);
+            
         }
         else
         { 

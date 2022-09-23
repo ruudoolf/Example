@@ -10,11 +10,39 @@ public class FallingPlatformSpawner : MonoBehaviour
     [SerializeField] private Vector2Int GridSize = new Vector2Int(5,5);
     private bool[,] IsPlatformStable;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        DesingGrid();
+        DesignGrid();
         SpawnGrid();
+    }
+
+
+    private void DesignGrid()
+    {
+        IsPlatformStable = new bool[GridSize.x, GridSize.y];
+        int randomX = Random.Range(0, IsPlatformStable.GetLength(0));
+
+        for (int y = 0; y < IsPlatformStable.GetLength(1); y++)
+        {
+            IsPlatformStable[randomX, y] = true;
+            bool isOnRightBorder = randomX >= IsPlatformStable.GetLength(0) - 1;
+            bool isOnLeftBorder = randomX <= 0;
+
+            if (isOnRightBorder)
+            {
+                // Only left or straight is allowed.
+                randomX += Random.Range(-1, 1);
+            }
+            else if (isOnLeftBorder)
+            {
+                // Only right or straight is allowed.
+                randomX += Random.Range(0, 2);
+            }
+            else
+            {
+                randomX += Random.Range(-1, 2);
+            }
+        }
     }
 
     private void SpawnGrid()
@@ -28,40 +56,12 @@ public class FallingPlatformSpawner : MonoBehaviour
                 {
                     Instantiate(Platform, new Vector3(DistanceBetweenPlatforms * i, 0, DistanceBetweenPlatforms * j), Quaternion.identity);
                 }
-
             }
         }
     }
-
-    private void DesingGrid()
-    {
-        IsPlatformStable = new bool[GridSize.x, GridSize.y];
-        int randomX = Random.Range(0,IsPlatformStable.GetLength(0));
-
-        for (int y = 0; y < IsPlatformStable.GetLength(1); y++)
-        {
-            IsPlatformStable[randomX, y] = true;
-            if (randomX >= IsPlatformStable.GetLength(0)-1)
-            {
-                randomX += Random.Range(-1, 1);
-            }
-            else if (randomX <= 0)
-            {
-                randomX += Random.Range(0,2);
-            }
-            else
-            {
-                randomX += Random.Range(-1, 2);
-            }
-
-            
-            
-        }
-    }
-  
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         
     }

@@ -44,5 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b85f1c522af3ffe4994a4eed813d4ceb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Platform: {fileID: 0}
-  DistanceBetweenPlatforms: 6
+  Platform: {fileID: 4082072499169203239, guid: 67b96ffaffda5294eb118aafa41051a4, type: 3}
+  DistanceBetweenPlatforms: 5
+  GridSize: {x: 5, y: 10}

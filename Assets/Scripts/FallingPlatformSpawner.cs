@@ -65,7 +65,7 @@ public class FallingPlatformSpawner : MonoBehaviour
     }
 
     
-    //TODO überprüfen ob wir noch -1 rechnen müssen. 
+    //TODO ï¿½berprï¿½fen ob wir noch -1 rechnen mï¿½ssen. 
     private int MaxRightStepsSidewards(int x)
     {
         return platformGrid.GetLength(0) - x -1;
@@ -132,10 +132,10 @@ public class FallingPlatformSpawner : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
+        //if (Input.GetKeyDown(KeyCode.R))
+        //{
+        //    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //}
     }
 
 }

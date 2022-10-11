@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnumTest : MonoBehaviour
+public class DancingShape : MonoBehaviour
 {
     private DanceType danceType;
     // Start is called before the first frame update
@@ -36,11 +36,4 @@ public class EnumTest : MonoBehaviour
                 break;
         }
     }
-}
-
-enum DanceType
-{
-    Color,
-    Grow,
-    Spin
 }

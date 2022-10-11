@@ -117,9 +117,9 @@ public class FallingPlatformSpawner : MonoBehaviour
                 else if (!platformGrid[i, j])
                 {
                     Color newColor = new Color(255, 0, 0);
-                    GameObject instd = Instantiate(Platform, new Vector3(DistanceBetweenPlatforms * i, 0, DistanceBetweenPlatforms * j), Quaternion.identity);
+                    GameObject instance = Instantiate(Platform, new Vector3(DistanceBetweenPlatforms * i, 0, DistanceBetweenPlatforms * j), Quaternion.identity);
 
-                    instd.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.red);
+                    instance.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.red);
                 }
             }
         }

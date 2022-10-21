@@ -8,6 +8,7 @@ public class FallingPlatformSpawner : MonoBehaviour
     [SerializeField] private Vector2Int GridSize = new Vector2Int(5, 5);
     [SerializeField] private int maxStepsSidewards = 3;
     private bool[,] platformGrid;
+    
 
     private void Start()
     {
@@ -106,20 +107,16 @@ public class FallingPlatformSpawner : MonoBehaviour
 
     private void SpawnGrid()
     {
+        GameObject platforms = new GameObject("Platforms");
         for (int i = 0; i < platformGrid.GetLength(0); i++)
         {
             for (int j = 0; j < platformGrid.GetLength(1); j++)
             {
-                if (platformGrid[i, j])
+                GameObject instance = Instantiate(Platform, new Vector3(DistanceBetweenPlatforms * i, 0, DistanceBetweenPlatforms * j), Quaternion.identity);
+                instance.transform.parent = platforms.transform;
+                if (!platformGrid[i, j])
                 {
-                    Instantiate(Platform, new Vector3(DistanceBetweenPlatforms * i, 0, DistanceBetweenPlatforms * j), Quaternion.identity);
-                }
-                else if (!platformGrid[i, j])
-                {
-                    Color newColor = new Color(255, 0, 0);
-                    GameObject instance = Instantiate(Platform, new Vector3(DistanceBetweenPlatforms * i, 0, DistanceBetweenPlatforms * j), Quaternion.identity);
-
-                    instance.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.red);
+                    instance.GetComponent<FallingPlatform>().CanFall = true;
                 }
             }
         }

@@ -19,8 +19,8 @@ public class Canon : MonoBehaviour
     void Update()
     {
         
-        float horizontalAxis = Input.GetAxis("Horizontal") * Time.deltaTime * rotationSpeed;
-        float verticalAxis = Input.GetAxis("Vertical") * Time.deltaTime * rotationSpeed * -1;
+        float horizontalAxis = Input.GetAxis("Mouse X") * Time.deltaTime * rotationSpeed;
+        float verticalAxis = Input.GetAxis("Mouse Y") * Time.deltaTime * rotationSpeed * -1;
         transform.Rotate(verticalAxis, horizontalAxis, 0, Space.World);
         if (Input.GetButtonDown("Fire1"))
         {

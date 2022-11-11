@@ -54,6 +54,7 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
+
         if (!isKnockedOut)
         {
             getUpTimer += Time.deltaTime;

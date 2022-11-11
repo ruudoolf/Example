@@ -19,9 +19,9 @@ public class Canon : MonoBehaviour
     void Update()
     {
         
-        float horizontalAxis = Input.GetAxis("Horizontal");
-        float verticalAxis = Input.GetAxis("Vertical");
-        transform.Rotate(-verticalAxis*Time.deltaTime*rotationSpeed, 0, -horizontalAxis * Time.deltaTime*rotationSpeed, Space.World);
+        float horizontalAxis = Input.GetAxis("Horizontal") * Time.deltaTime * rotationSpeed;
+        float verticalAxis = Input.GetAxis("Vertical") * Time.deltaTime * rotationSpeed * -1;
+        transform.Rotate(verticalAxis, horizontalAxis, 0, Space.World);
         if (Input.GetButtonDown("Fire1"))
         {
             GameObject newfood = Instantiate(food, shootPoint.position, shootPoint.rotation);

@@ -32,7 +32,7 @@ public class Target : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collidedObject)
     {
-        if (collidedObject.gameObject.tag == "Projectile")
+        if (collidedObject.gameObject.CompareTag("Projectile"))
         {
             Destroy(gameObject);
         }
@@ -45,7 +45,7 @@ public class Target : MonoBehaviour
     private void ChangeDirection()
     {
         CancelInvoke(nameof(ChangeDirection));
-        direction = direction*-1 ;
+        direction *= -1 ;
         Invoke(nameof(ChangeDirection), Random.Range(1f, 3f));
     }
 }

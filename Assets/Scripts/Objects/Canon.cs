@@ -24,6 +24,7 @@ public class Canon : MonoBehaviour
         transform.Rotate(verticalAxis, horizontalAxis, 0, Space.World);
         if (Input.GetButtonDown("Fire1"))
         {
+            AudioManager.Instance.Play("");
             GameObject newfood = Instantiate(food, shootPoint.position, shootPoint.rotation);
             Rigidbody direction = newfood.GetComponent<Rigidbody>();
             direction.AddForce(shootPoint.TransformDirection(shootingDirection));

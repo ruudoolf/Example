@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Targets : MonoBehaviour
+public class Target : MonoBehaviour
 {
     private Rigidbody targetRigidbody;
     private Vector3 direction = Vector3.right ;
@@ -15,7 +15,6 @@ public class Targets : MonoBehaviour
         startPosition = transform.position;
         targetRigidbody = GetComponent<Rigidbody>();
         Invoke(nameof(ChangeDirection), Random.Range(1f, 3f));
-
     }
 
     // Update is called once per frame

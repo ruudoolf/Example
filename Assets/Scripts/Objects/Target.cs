@@ -34,7 +34,9 @@ public class Target : MonoBehaviour
     {
         if (collidedObject.gameObject.CompareTag("Projectile"))
         {
+            TargetSpawner.Instance.Spawn();
             Destroy(gameObject);
+            
         }
     }
     private void TargetMovment()

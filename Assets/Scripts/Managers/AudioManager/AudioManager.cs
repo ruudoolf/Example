@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; set; }
-
+  
     [SerializeField]
     private bool mute = false;
 
@@ -20,7 +20,6 @@ public class AudioManager : MonoBehaviour
     public void Play(string name)
     {
         Sound s = SearchSound(name);
-
         if (s is null)
         {
             Debug.LogWarning("Sound: " + name + " notfound!");

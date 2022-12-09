@@ -5,6 +5,9 @@ using UnityEngine;
 public class TargetSpawner : MonoBehaviour
 
 {
+    [SerializeField] private Transform topRightBoundary;
+    [SerializeField] private Transform bottomLeftBoundary;
+
     public static TargetSpawner Instance { get; set; }
     [SerializeField] private GameObject target;
     // Start is called before the first frame update
@@ -21,6 +24,9 @@ public class TargetSpawner : MonoBehaviour
     }
     public void Spawn()
     {
-        Instantiate(target);
+        float x = Random.Range(bottomLeftBoundary.position.x, topRightBoundary.position.x);
+        float y = Random.Range(bottomLeftBoundary.position.y, topRightBoundary.position.y);
+        float z = Random.Range(bottomLeftBoundary.position.z, topRightBoundary.position.z);
+        Instantiate(target, new Vector3(x,y,z), topRightBoundary.transform.rotation);
     }
 }

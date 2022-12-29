@@ -11,7 +11,6 @@ public class Target : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.visible = false;
         startPosition = transform.position;
         targetRigidbody = GetComponent<Rigidbody>();
         Invoke(nameof(ChangeDirection), Random.Range(1f, 3f));

@@ -9,6 +9,8 @@ public class Canon : MonoBehaviour
     [SerializeField] private int rotationSpeed = 100;
     [SerializeField] private Vector3 shootingDirection = new Vector3(0, 1000, 0);
     [SerializeField] private Transform shootPoint;
+    [SerializeField] private GameObject shootingEffect;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +32,7 @@ public class Canon : MonoBehaviour
             GameObject newfood = Instantiate(food, shootPoint.position, shootPoint.rotation);
             Rigidbody direction = newfood.GetComponent<Rigidbody>();
             direction.AddForce(shootPoint.TransformDirection(shootingDirection));
+            Instantiate(shootingEffect, shootPoint.position, shootPoint.rotation);
 
         }
     }

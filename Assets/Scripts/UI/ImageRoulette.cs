@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ImageRoulette : MonoBehaviour
@@ -12,10 +13,12 @@ public class ImageRoulette : MonoBehaviour
     [SerializeField] private float startSpeed = 10;
     [SerializeField] private float timeToStop = 5;
     [SerializeField] private Sprite [] levelSprites;
-    
+    [SerializeField] private int roundsUntilStop;
+
+
+    private Vector3 distanceToTravel;
 
     private float currentSpeed;
-    private float roundsUntilStop = 3;
     private readonly List<KeyValuePair<GameObject, bool>> levelThumbnails = new List<KeyValuePair<GameObject, bool>>();
     private int winningNumber = 1;
 
@@ -31,6 +34,8 @@ public class ImageRoulette : MonoBehaviour
 
     private void Start()
     {
+        Vector3 oneWayDistance = rightBoundary.position - leftBoundary.position;
+        distanceToTravel = oneWayDistance * roundsUntilStop + oneWayDistance * 0.5f;
         currentSpeed = startSpeed;
         SpawnThumbnail(0);
         SpawnThumbnail(1);
@@ -39,34 +44,17 @@ public class ImageRoulette : MonoBehaviour
 
     private void Update()
     {
+        // TODO DANI: Remove this when finished testing.
+        if (Input.GetKeyDown(KeyCode.Space)) SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        currentSpeed = Mathf.Lerp(startSpeed, 0, Time.time / timeToStop);
         foreach (KeyValuePair<GameObject, bool> thumbnail in levelThumbnails)
         {
             thumbnail.Key.transform.Translate(new Vector3(currentSpeed, 0, 0) * Time.deltaTime);
             if (thumbnail.Key.transform.position.x >= rightBoundary.position.x)
             {
-                if (thumbnail.Value)
-                {
-                    roundsUntilStop--;
-                }
                 thumbnail.Key.transform.position = leftBoundary.position;
             }
-            if (thumbnail.Value)
-            {
-                if (roundsUntilStop > 0)
-                {
-                    float xDistance = rightBoundary.position.x - thumbnail.Key.transform.position.x;
-                    print(xDistance);
-                    print(startSpeed + " || " + (startSpeed - startSpeed / roundsUntilStop));
-                    currentSpeed = Mathf.Lerp(startSpeed, startSpeed - startSpeed / roundsUntilStop, 1f - xDistance);
-                }
-                else
-                {
-                    Vector3 centerPosition = (leftBoundary.position + rightBoundary.position) / 2;
-                    float xDistance = centerPosition.x - thumbnail.Key.transform.position.x;
-                    currentSpeed = Mathf.Lerp(startSpeed, 0, 1 - xDistance);
-                }
-            }
-           
         }
     }
 }

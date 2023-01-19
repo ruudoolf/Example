@@ -18,16 +18,4 @@ public class MainMenu : MonoBehaviour
         //imageFade.color = tempColor;
         SceneManager.LoadScene(Random.Range(1, SceneManager.sceneCountInBuildSettings));
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
 }

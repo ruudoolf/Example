@@ -10,16 +10,9 @@ public class Canon : MonoBehaviour
     [SerializeField] private Vector3 shootingDirection = new Vector3(0, 1000, 0);
     [SerializeField] private Transform shootPoint;
     [SerializeField] private GameObject shootingEffect;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-    }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         
         float horizontalAxis = Input.GetAxis("Mouse X") * Time.deltaTime * rotationSpeed;

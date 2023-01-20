@@ -9,6 +9,7 @@ public class MainMenu : MonoBehaviour
 
     [SerializeField] private GameObject buttonMenu;
     [SerializeField] private Image imageFade;
+    
     public void StartGame()
     {
         print(SceneManager.sceneCountInBuildSettings);
